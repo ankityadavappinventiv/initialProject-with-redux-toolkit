@@ -1,18 +1,11 @@
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet, ViewStyle} from 'react-native';
 import React, {useEffect} from 'react';
-import styles from './styles';
 import {COLORS} from '_styles';
 import {Header, Screen} from '_components';
-import {useAppDispatch} from '_hooks';
-import {
-  demoAction,
-  getDemoLoginLoading,
-  authReducer,
-} from '../../Redux/Slices/auth.slice';
-import {useAppSelector} from '../../hooks/generalHooks';
-import {authAction} from '../../Redux/Slices/auth.slice';
+import {useAppDispatch, useAppSelector} from '_hooks';
+import {authAction, demoAction} from '_slices/auth.slice';
 
-const HomeScreen = () => {
+const Home = () => {
   const dispatch = useAppDispatch();
   const loadingState = useAppSelector(
     state => state.authReducer.demoLoading === 'loading',
@@ -49,4 +42,21 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default Home;
+
+interface StylesProps {
+  mainComponent: ViewStyle;
+  container: ViewStyle;
+}
+
+const styles = StyleSheet.create<StylesProps>({
+  mainComponent: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

@@ -36,6 +36,7 @@ export const initialState = authAdapter.getInitialState({
   loginLoading: '',
   isLogin: false,
   demoLoading: 'not loaded',
+  languageCode: 'en',
 });
 
 export const authSlice = createSlice({
@@ -44,6 +45,12 @@ export const authSlice = createSlice({
   reducers: {
     logout: (state, action) => {
       return initialState;
+    },
+    changeLanguage: (state, action) => {
+      return {
+        ...state,
+        languageCode: action.payload,
+      };
     },
   },
   extraReducers: builder => {

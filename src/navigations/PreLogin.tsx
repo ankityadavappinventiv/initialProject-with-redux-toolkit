@@ -1,20 +1,17 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {SignInScreen, SignUpScreen} from '_scenes';
+import {Login, ResetPassword} from '_scenes/auth';
+import {screenNames} from '_utils';
 
-export type PreLoginParamList = {
-  navigate(arg0: string): unknown;
-  goBack(): unknown;
-  SignUpScreen: undefined;
-  SignInScreen: undefined;
-};
-
-const Stack = createNativeStackNavigator<PreLoginParamList>();
+const Stack = createNativeStackNavigator();
 const PreLogin = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="SignInScreen" component={SignInScreen} />
-      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+      <Stack.Screen name={screenNames.LOGIN_SCREEN} component={Login} />
+      <Stack.Screen
+        name={screenNames.RESET_PASSWORD}
+        component={ResetPassword}
+      />
     </Stack.Navigator>
   );
 };

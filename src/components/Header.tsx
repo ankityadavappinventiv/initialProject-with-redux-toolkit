@@ -11,7 +11,7 @@ import {StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {COLORS, SPACING, TYPOGRAPHY} from '_styles';
+import {COLORS, SPACING, TYPOGRAPHY, vw} from '_styles';
 
 interface StyleProps {
   safeView: ViewStyle;
@@ -94,20 +94,20 @@ const styles = StyleSheet.create<StyleProps>({
     backgroundColor: COLORS.GRAY_LIGHT,
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: SPACING.SCALE_16,
-    height: SPACING.SCALE_44,
+    marginHorizontal: vw(16),
+    height: vw(44),
   },
   titleView: {
     flex: 1,
     alignItems: 'center',
   },
   titleStyle: {
-    fontSize: SPACING.SCALE_16,
+    fontSize: vw(16),
     fontWeight: TYPOGRAPHY.FONT_WEIGHT_BOLD,
     color: COLORS.BLACK,
   },
   noIcon: {
-    height: SPACING.SCALE_44,
-    width: SPACING.SCALE_20,
+    height: vw(44),
+    width: vw(20),
   },
 });

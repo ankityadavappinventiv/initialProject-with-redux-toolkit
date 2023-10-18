@@ -1,17 +1,14 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen} from '_scenes';
+import Home from '_scenes/home/Screens/Home';
+import {screenNames} from '_utils';
 
-export type PostLoginParamList = {
-  HomeScreen: undefined;
-};
-
-const Stack = createNativeStackNavigator<PostLoginParamList>();
+const Stack = createNativeStackNavigator();
 
 const PostLogin = () => {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name={screenNames.HOME_SCREEN} component={Home} />
     </Stack.Navigator>
   );
 };
