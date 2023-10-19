@@ -2,5 +2,8 @@
     "greeting": "Hello!",
     "welcome": "Welcome to my app.",
     "login": "Login",
-    "resetPassword": "Reset Password"
+    "signUp": "Sign Up",
+    "resetPassword": "Reset Password",
+    "forgotPasswordTitle": "Forgot Password",
+    "dontHaveAnAccountSignUpNow":"Don't have an account? Sign up now "
   }

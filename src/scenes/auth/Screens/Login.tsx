@@ -11,11 +11,12 @@ import {
   TextInputProps,
   TextProps,
   TouchableOpacityProps,
+  Alert,
 } from 'react-native';
 import React, {useState} from 'react';
 import {Header, Screen} from '_components';
 import {useAppDispatch, useAppSelector} from '_hooks';
-import {COLORS, SPACING} from '_styles';
+import {COLORS, SPACING, vw} from '_styles';
 import {STRINGS, i18n, screenNames} from '_utils';
 import {authAction} from '_slices/auth.slice';
 
@@ -39,9 +40,10 @@ const Login = (props: Props) => {
       password: password,
     };
     // dispatch(loginAction(params));
-    dispatch(authAction.changeLanguage(currentLanguage === 'es' ? 'en' : 'es'));
+    Alert.alert(i18n.language);
+    // dispatch(authAction.changeLanguage(currentLanguage === 'es' ? 'en' : 'es'));
     props.navigation.navigate(screenNames.RESET_PASSWORD);
-    i18n.changeLanguage(currentLanguage === 'es' ? 'en' : 'es');
+    // i18n.changeLanguage(currentLanguage === 'es' ? 'en' : 'es');
   };
 
   const _onChangeText = (key: string, value: string) => {
@@ -55,6 +57,10 @@ const Login = (props: Props) => {
 
   const _onLeftAction = () => {
     BackHandler.exitApp();
+  };
+
+  const _forgotPasswordFun = () => {
+    props.navigation.navigate(screenNames.FORGOT_PASSWORD);
   };
 
   return (
@@ -86,9 +92,22 @@ const Login = (props: Props) => {
           onChangeText={e => _onChangeText('password', e)}
         />
         <TouchableOpacity
+          style={styles.forgotPasswordView as StyleProp<ViewStyle>}
+          onPress={() => _forgotPasswordFun()}>
+          <Text style={styles.forgotPasswordTextStyle}>
+            {i18n.t(STRINGS.forgotPasswordTitle)}?
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={styles.button as StyleProp<ViewStyle>}
           onPress={() => _loginFun()}>
           <Text style={styles.loginText}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => props.navigation.navigate(screenNames.REGISTER_SCREEN)}
+          style={styles.dontHaveAccountView as StyleProp<ViewStyle>}>
+          <Text>{i18n.t(STRINGS.dontHaveAnAccountSignUpNow)}</Text>
         </TouchableOpacity>
       </Screen>
     </View>
@@ -101,6 +120,9 @@ interface StylesProp {
   textInput: TextInputProps;
   button: TouchableOpacityProps;
   loginText: TextProps;
+  forgotPasswordView: TouchableOpacityProps;
+  forgotPasswordTextStyle: TextProps;
+  dontHaveAccountView: TouchableOpacityProps;
 }
 
 const styles = StyleSheet.create<StylesProp>({
@@ -136,6 +158,17 @@ const styles = StyleSheet.create<StylesProp>({
     color: COLORS.WHITE,
     fontSize: SPACING.SCALE_16,
     textAlign: 'center',
+  },
+  forgotPasswordTextStyle: {
+    color: COLORS.GRAY_DARK,
+  },
+  forgotPasswordView: {
+    alignItems: 'flex-end',
+    marginHorizontal: vw(20),
+    marginTop: vw(-20),
+  },
+  dontHaveAccountView: {
+    marginHorizontal: vw(20),
   },
 });
 export default Login;

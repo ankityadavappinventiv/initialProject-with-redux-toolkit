@@ -1,6 +1,11 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Login, ResetPassword} from '_scenes/auth';
+import {
+  ForgotPassword,
+  Login,
+  RegisterScreen,
+  ResetPassword,
+} from '_scenes/auth';
 import {screenNames} from '_utils';
 
 const Stack = createNativeStackNavigator();
@@ -9,8 +14,16 @@ const PreLogin = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name={screenNames.LOGIN_SCREEN} component={Login} />
       <Stack.Screen
+        name={screenNames.REGISTER_SCREEN}
+        component={RegisterScreen}
+      />
+      <Stack.Screen
         name={screenNames.RESET_PASSWORD}
         component={ResetPassword}
+      />
+      <Stack.Screen
+        name={screenNames.FORGOT_PASSWORD}
+        component={ForgotPassword}
       />
     </Stack.Navigator>
   );

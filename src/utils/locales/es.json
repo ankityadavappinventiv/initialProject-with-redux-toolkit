@@ -2,6 +2,9 @@
     "greeting": "¡Hola!",
     "welcome": "Bienvenido a mi aplicación.",
     "login": "Spanish Login",
-    "resetPassword": "Spanish Reset Password"
+    "signUp": "Spanish Sign Up",
+    "resetPassword": "Spanish Reset Password",
+    "forgotPasswordTitle": "Spanish Forgot Password",
+    "dontHaveAnAccountSignUpNow":"Spanish Don't have an account? Sign up now "
   }
   
