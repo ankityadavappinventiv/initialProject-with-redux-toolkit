@@ -18,8 +18,6 @@ import {useAppDispatch, useAppSelector} from '_hooks';
 import {COLORS, SPACING} from '_styles';
 import {STRINGS, i18n, screenNames} from '_utils';
 import {authAction} from '_slices/auth.slice';
-import {useFocusEffect} from '@react-navigation/native';
-import {navigate} from '../../../navigations/navigationServices';
 
 type Props = {
   navigation: any;
@@ -43,9 +41,7 @@ const Login = (props: Props) => {
     // dispatch(loginAction(params));
     dispatch(authAction.changeLanguage(currentLanguage === 'es' ? 'en' : 'es'));
     props.navigation.navigate(screenNames.RESET_PASSWORD);
-    i18n
-      .changeLanguage(currentLanguage === 'es' ? 'en' : 'es')
-      .then(() => i18n.reloadResources(currentLanguage === 'es' ? 'en' : 'es'));
+    i18n.changeLanguage(currentLanguage === 'es' ? 'en' : 'es');
   };
 
   const _onChangeText = (key: string, value: string) => {
@@ -64,7 +60,7 @@ const Login = (props: Props) => {
   return (
     <View style={styles.mainComponent}>
       <Header
-        title={i18n.t('login')}
+        title={i18n.t(STRINGS.Login)}
         isRightIcon={false}
         isLeftIcon={Platform.OS === 'android' ? true : false}
         leftIconDisabled={false}
