@@ -28,6 +28,7 @@ interface BaseScreenProps {
   StatusBarProps?: StatusBarProps;
   KeyboardAvoidingViewProps?: KeyboardAvoidingViewProps;
   loading?: boolean;
+  statusBarColor?: string;
 }
 
 interface FixedScreenProps extends BaseScreenProps {
@@ -179,13 +180,18 @@ export function Screen(props: ScreenProps) {
     StatusBarProps,
     statusBarStyle = 'dark-content',
     loading = false,
+    statusBarColor,
   } = props;
 
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges);
 
   return (
     <View style={[$containerStyle, {backgroundColor}, $containerInsets]}>
-      <StatusBar barStyle={statusBarStyle} {...StatusBarProps} />
+      <StatusBar
+        barStyle={statusBarStyle}
+        {...StatusBarProps}
+        backgroundColor={statusBarColor}
+      />
       <KeyboardAvoidingView
         behavior={isIos ? 'padding' : undefined}
         keyboardVerticalOffset={keyboardOffset}

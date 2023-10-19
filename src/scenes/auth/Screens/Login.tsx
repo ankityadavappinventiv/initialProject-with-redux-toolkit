@@ -68,10 +68,10 @@ const Login = (props: Props) => {
       />
       <Screen
         style={styles.container}
+        statusBarColor={COLORS.GRAY_LIGHT}
         contentContainerStyle={{
           flex: 1,
           justifyContent: 'center',
-          // alignItems: 'center',
         }}>
         <TextInput
           style={styles.textInput}

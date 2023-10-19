@@ -45,7 +45,6 @@ const Header: FC<HeaderProps> = ({
   const insets = useSafeAreaInsets();
   return (
     <SafeAreaView style={[styles.safeView, {paddingTop: insets.top}]}>
-      <StatusBar />
       <View style={styles.mainView}>
         {isLeftIcon ? (
           <TouchableOpacity
