@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import {ExtendedEdge, useSafeAreaInsetsStyle} from '_utils';
 import {COLORS} from '../../styles';
+import {useColors} from '_hooks';
 
 interface BaseScreenProps {
   children?: React.ReactNode;
@@ -182,7 +183,7 @@ export function Screen(props: ScreenProps) {
     loading = false,
     statusBarColor,
   } = props;
-
+  const Color = useColors();
   const $containerInsets = useSafeAreaInsetsStyle(safeAreaEdges);
 
   return (
@@ -190,13 +191,17 @@ export function Screen(props: ScreenProps) {
       <StatusBar
         barStyle={statusBarStyle}
         {...StatusBarProps}
-        backgroundColor={statusBarColor}
+        backgroundColor={statusBarColor ?? Color.STATUS_BAR_COLOR}
       />
       <KeyboardAvoidingView
         behavior={isIos ? 'padding' : undefined}
         keyboardVerticalOffset={keyboardOffset}
         {...KeyboardAvoidingViewProps}
-        style={[$keyboardAvoidingViewStyle, KeyboardAvoidingViewProps?.style]}>
+        style={[
+          $keyboardAvoidingViewStyle,
+          KeyboardAvoidingViewProps?.style,
+          {backgroundColor: Color.WHITE},
+        ]}>
         {isNonScrolling(props.preset) ? (
           <ScreenWithoutScrolling {...props} />
         ) : (
@@ -206,7 +211,7 @@ export function Screen(props: ScreenProps) {
           <ActivityIndicator
             style={loadingStyle}
             size={'large'}
-            color={COLORS.GRAY_DARK}
+            color={Color.GRAY_DARK}
           />
         ) : null}
       </KeyboardAvoidingView>
@@ -230,7 +235,6 @@ const loadingStyle: ViewStyle = {
 
 const $keyboardAvoidingViewStyle: ViewStyle = {
   flex: 1,
-  backgroundColor: COLORS.WHITE,
 };
 
 const $outerStyle: ViewStyle = {

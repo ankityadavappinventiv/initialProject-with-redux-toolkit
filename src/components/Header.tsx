@@ -11,7 +11,8 @@ import {StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {TouchableOpacity} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {COLORS, SPACING, TYPOGRAPHY, vw} from '_styles';
+import {TYPOGRAPHY, vw} from '_styles';
+import {useColors} from '_hooks';
 
 interface StyleProps {
   safeView: ViewStyle;
@@ -42,10 +43,15 @@ const Header: FC<HeaderProps> = ({
   rightIconDisabled,
   leftIconDisabled,
 }) => {
+  const Color = useColors();
   const insets = useSafeAreaInsets();
   return (
-    <SafeAreaView style={[styles.safeView, {paddingTop: insets.top}]}>
-      <View style={styles.mainView}>
+    <SafeAreaView
+      style={[
+        styles.safeView,
+        {paddingTop: insets.top, backgroundColor: Color.GRAY_LIGHT},
+      ]}>
+      <View style={[styles.mainView, {backgroundColor: Color.GRAY_LIGHT}]}>
         {isLeftIcon ? (
           <TouchableOpacity
             activeOpacity={0.7}
@@ -54,14 +60,14 @@ const Header: FC<HeaderProps> = ({
             <Icon
               name={leftIcon ? leftIcon : 'arrow-back-ios'}
               size={20}
-              color="black"
+              color={Color.BLACK}
             />
           </TouchableOpacity>
         ) : (
           <View style={styles.noIcon} />
         )}
         <View style={styles.titleView}>
-          <Text style={styles.titleStyle}>{title}</Text>
+          <Text style={[styles.titleStyle, {color: Color.BLACK}]}>{title}</Text>
         </View>
         {isRightIcon ? (
           <TouchableOpacity
@@ -71,7 +77,7 @@ const Header: FC<HeaderProps> = ({
             <Icon
               name={leftIcon ? leftIcon : 'arrow-back-ios'}
               size={20}
-              color="black"
+              color={Color.BLACK}
             />
           </TouchableOpacity>
         ) : (
@@ -87,10 +93,8 @@ export default Header;
 const styles = StyleSheet.create<StyleProps>({
   safeView: {
     width: '100%',
-    backgroundColor: COLORS.GRAY_LIGHT,
   },
   mainView: {
-    backgroundColor: COLORS.GRAY_LIGHT,
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: vw(16),
@@ -103,7 +107,6 @@ const styles = StyleSheet.create<StyleProps>({
   titleStyle: {
     fontSize: vw(16),
     fontWeight: TYPOGRAPHY.FONT_WEIGHT_BOLD,
-    color: COLORS.BLACK,
   },
   noIcon: {
     height: vw(44),
