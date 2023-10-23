@@ -17,11 +17,9 @@ import {
 import React, {useEffect, useState} from 'react';
 import {Header, Screen} from '_components';
 import {useAppDispatch, useAppSelector, useColors} from '_hooks';
-import {COLORS, SPACING, vw} from '_styles';
+import {SPACING, vw} from '_styles';
 import {STRINGS, i18n, screenNames} from '_utils';
-import {authAction} from '_slices/auth.slice';
 import {utilsAction} from '_slices/utils.slice';
-import {utilsReducer} from '../../../Redux/Slices/utils.slice';
 import {useFocusEffect} from '@react-navigation/native';
 
 type Props = {

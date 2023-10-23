@@ -1,11 +1,11 @@
 import {View, Text, StyleSheet, ViewStyle} from 'react-native';
 import React, {useEffect} from 'react';
-import {COLORS} from '_styles';
 import {Header, Screen} from '_components';
-import {useAppDispatch, useAppSelector} from '_hooks';
+import {useAppDispatch, useAppSelector, useColors} from '_hooks';
 import {authAction, demoAction} from '_slices/auth.slice';
 
 const Home = () => {
+  const Color = useColors();
   const dispatch = useAppDispatch();
   const loadingState = useAppSelector(
     state => state.authReducer.demoLoading === 'loading',
@@ -21,7 +21,7 @@ const Home = () => {
       <Screen
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
-        backgroundColor={COLORS.ALERT}
+        backgroundColor={Color.WHITE}
         loading={loadingState}
         contentContainerStyle={{
           flex: 1,

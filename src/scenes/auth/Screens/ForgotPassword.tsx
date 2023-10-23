@@ -1,5 +1,6 @@
 import {Header, Screen} from '_components';
-import {COLORS, vw} from '_styles';
+import {useColors} from '_hooks';
+import {vw} from '_styles';
 import {STRINGS, i18n} from '_utils';
 import React, {useState} from 'react';
 import {
@@ -18,6 +19,7 @@ type Props = {
 };
 
 const ForgotPassword = (props: Props) => {
+  const Color = useColors();
   const [email, setEmail] = useState('');
 
   const handleResetPassword = () => {
@@ -37,20 +39,26 @@ const ForgotPassword = (props: Props) => {
       />
       <Screen
         style={styles.container}
-        statusBarColor={COLORS.GRAY_LIGHT}
+        statusBarColor={Color.WHITE}
         contentContainerStyle={{
           flex: 1,
           justifyContent: 'center',
           marginHorizontal: vw(20),
         }}>
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: Color.GRAY_MEDIUM}]}
           placeholder={'Please enter email'}
           value={email}
           onChangeText={e => setEmail(e)}
         />
         <TouchableOpacity
-          style={styles.button as StyleProp<ViewStyle>}
+          style={[
+            styles.button as StyleProp<ViewStyle>,
+            {
+              borderColor: Color.SECONDARY,
+              backgroundColor: Color.SECONDARY,
+            },
+          ]}
           onPress={() =>
             Alert.alert('Alert Title', i18n.language, [
               {
@@ -61,7 +69,7 @@ const ForgotPassword = (props: Props) => {
               },
             ])
           }>
-          <Text style={styles.loginText}>
+          <Text style={[styles.loginText, {color: Color.WHITE}]}>
             {i18n.t(STRINGS.forgotPasswordTitle)}
           </Text>
         </TouchableOpacity>
@@ -86,7 +94,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: vw(1),
-    borderColor: COLORS.GRAY_MEDIUM,
     height: vw(40),
     marginHorizontal: vw(20),
     borderRadius: vw(7),
@@ -94,8 +101,6 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: vw(1),
-    borderColor: COLORS.SECONDARY,
-    backgroundColor: COLORS.SECONDARY,
     height: vw(50),
     justifyContent: 'center',
     alignItems: 'center',
@@ -104,7 +109,6 @@ const styles = StyleSheet.create({
     marginTop: vw(25),
   },
   loginText: {
-    color: COLORS.WHITE,
     fontSize: vw(16),
     textAlign: 'center',
   },

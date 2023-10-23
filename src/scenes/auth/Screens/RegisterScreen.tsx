@@ -1,9 +1,6 @@
 import {Header, Screen} from '_components';
-import {COLORS} from '_styles';
 import {STRINGS, i18n} from '_utils';
 import React, {useState} from 'react';
-import {goBack} from '../../../navigations/navigationServices';
-import {vw} from '../../../styles/dimensions';
 import {
   View,
   Text,
@@ -12,12 +9,15 @@ import {
   StyleSheet,
   Alert,
 } from 'react-native';
+import {useColors} from '_hooks';
+import {vw} from '_styles';
 
 type Props = {
   navigation: any;
 };
 
 const RegisterScreen = (props: Props) => {
+  const Color = useColors();
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -48,33 +48,41 @@ const RegisterScreen = (props: Props) => {
       />
       <Screen
         style={styles.container}
-        statusBarColor={COLORS.GRAY_LIGHT}
+        statusBarColor={Color.WHITE}
         contentContainerStyle={{
           flex: 1,
           justifyContent: 'center',
         }}>
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: Color.GRAY_MEDIUM}]}
           placeholder="Name"
           onChangeText={e => _onChangeText('name', e)}
           value={name}
         />
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: Color.GRAY_MEDIUM}]}
           placeholder="Email"
           onChangeText={e => _onChangeText('email', e)}
           value={email}
           keyboardType="email-address"
         />
         <TextInput
-          style={styles.textInput}
+          style={[styles.textInput, {borderColor: Color.GRAY_MEDIUM}]}
           placeholder="Password"
           onChangeText={e => _onChangeText('password', e)}
           value={password}
           secureTextEntry={true}
         />
-        <TouchableOpacity style={styles.button} onPress={_handleRegister}>
-          <Text style={styles.loginText}>Sign Up</Text>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              borderColor: Color.SECONDARY,
+              backgroundColor: Color.SECONDARY,
+            },
+          ]}
+          onPress={_handleRegister}>
+          <Text style={[styles.loginText, {color: Color.WHITE}]}>Sign Up</Text>
         </TouchableOpacity>
       </Screen>
     </View>
@@ -91,7 +99,6 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderWidth: vw(1),
-    borderColor: COLORS.GRAY_MEDIUM,
     height: vw(40),
     marginHorizontal: vw(20),
     borderRadius: vw(7),
@@ -99,8 +106,6 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: vw(1),
-    borderColor: COLORS.SECONDARY,
-    backgroundColor: COLORS.SECONDARY,
     height: vw(50),
     justifyContent: 'center',
     alignItems: 'center',
@@ -109,7 +114,6 @@ const styles = StyleSheet.create({
     marginTop: vw(25),
   },
   loginText: {
-    color: COLORS.WHITE,
     fontSize: vw(16),
     textAlign: 'center',
   },

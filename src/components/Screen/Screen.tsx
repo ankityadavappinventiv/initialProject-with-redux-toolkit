@@ -15,7 +15,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import {ExtendedEdge, useSafeAreaInsetsStyle} from '_utils';
-import {COLORS} from '../../styles';
 import {useColors} from '_hooks';
 
 interface BaseScreenProps {
